@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "touchstonedst",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "TouchStone DST",
+  "description": "This is a mod that adds in Touch Stones from Don't Starve Together at the cost of no more Totem of Undying",
   "authors": [
-    "Me!"
+    "The Changer"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -14,16 +14,16 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/touchstonedst/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "com.the_changer.touchstonedst.TouchStoneDST"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "touchstonedst.mixins.json"
   ],
 
   "depends": {
