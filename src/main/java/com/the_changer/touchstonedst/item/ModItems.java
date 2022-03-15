@@ -20,6 +20,7 @@ public class ModItems {
         return Registry.register(Registry.ITEM, new Identifier(TouchStoneDST.MOD_ID, name), item);
     }
 
+    //register the modded items to the mod
     public static void registerModItems() {
         TouchStoneDST.LOGGER.info("Registering Mod Items for " + TouchStoneDST.MOD_ID);
     }

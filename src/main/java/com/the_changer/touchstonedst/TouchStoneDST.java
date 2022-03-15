@@ -1,5 +1,6 @@
 package com.the_changer.touchstonedst;
 
+import com.the_changer.touchstonedst.block.ModBlocks;
 import com.the_changer.touchstonedst.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -19,6 +20,9 @@ public class TouchStoneDST implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		LOGGER.info("Hello Fabric world!");
+
+		//register the items and blocks
 		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
 	}
 }
