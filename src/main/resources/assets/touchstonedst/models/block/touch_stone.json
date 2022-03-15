@@ -1,0 +1,11 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "up": "touchstonedst:block/touchstone_cracked",
+    "down": "touchstonedst:block/touchstone",
+    "east": "touchstonedst:block/touchstone",
+    "west": "touchstonedst:block/touchstone",
+    "north": "touchstonedst:block/touchstone",
+    "south": "touchstonedst:block/touchstone"
+  }
+}

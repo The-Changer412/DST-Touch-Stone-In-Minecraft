@@ -3,5 +3,8 @@
   "item.touchstonedst.mythril_nugget": "Mythril Nugget",
 
   "block.touchstonedst.mythril_block": "Mythril Block",
-  "block.touchstonedst.mythril_ore": "Mythril Ore"
+  "block.touchstonedst.mythril_ore": "Mythril Ore",
+
+  "block.touchstonedst.pig_head": "Pig Head",
+  "block.touchstonedst.touch_stone": "Touch Stone"
 }
