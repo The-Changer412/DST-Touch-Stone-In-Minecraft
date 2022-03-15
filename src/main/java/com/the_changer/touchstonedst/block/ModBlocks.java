@@ -13,13 +13,10 @@ import net.minecraft.util.registry.Registry;
 
 public class ModBlocks {
     //create the blocks
-    public static final Block MYTHRIL_BLOCK = registerBlock("mythril_block",
-            new Block(FabricBlockSettings.of(Material.METAL).strength(3f, 6f).requiresTool()), ItemGroup.MISC);
-    public static final Block MYTHRIL_ORE = registerBlock("mythril_ore",
-            new Block(FabricBlockSettings.of(Material.STONE).strength(1f, 6f).requiresTool()), ItemGroup.MISC);
     public static final Block PIG_HEAD = registerBlock("pig_head",
             new Block(FabricBlockSettings.of(Material.DECORATION)
                     .strength(9999999999999999f, 9999999999999999f).requiresTool()), ItemGroup.MISC);
+
     public static final Block TOUCH_STONE = registerBlock("touch_stone",
             new Block(FabricBlockSettings.of(Material.DECORATION)
                     .strength(9999999999999999f, 9999999999999999f).requiresTool()), ItemGroup.MISC);
