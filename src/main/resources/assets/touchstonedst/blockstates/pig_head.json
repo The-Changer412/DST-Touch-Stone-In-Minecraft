@@ -1,8 +1,24 @@
 {
   "variants":
   {
-    "": {
+    "facing=north":
+    {
       "model": "touchstonedst:block/pig_head"
+    },
+    "facing=east":
+    {
+      "model": "touchstonedst:block/pig_head",
+      "y": 90
+    },
+    "facing=south":
+    {
+      "model": "touchstonedst:block/pig_head",
+      "y": 180
+    },
+    "facing=west":
+    {
+      "model": "touchstonedst:block/pig_head",
+      "y": 270
     }
   }
 }

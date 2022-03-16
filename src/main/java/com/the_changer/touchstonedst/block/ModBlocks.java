@@ -14,7 +14,7 @@ import net.minecraft.util.registry.Registry;
 public class ModBlocks {
     //create the blocks
     public static final Block PIG_HEAD = registerBlock("pig_head",
-            new Block(FabricBlockSettings.of(Material.DECORATION)
+            new RotateBlock(FabricBlockSettings.of(Material.DECORATION)
                     .strength(9999999999999999f, 9999999999999999f).requiresTool()), ItemGroup.MISC);
 
     public static final Block TOUCH_STONE = registerBlock("touch_stone",
