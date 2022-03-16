@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_bottom_top",
   "textures": {
-    "up": "touchstonedst:block/touch_stone/touchstone_top_cracked",
+    "up": "touchstonedst:block/touch_stone/touchstone_top",
     "down": "touchstonedst:block/touch_stone/touchstone_bottom",
     "east": "touchstonedst:block/touch_stone/touchstone_side",
     "west": "touchstonedst:block/touch_stone/touchstone_side",

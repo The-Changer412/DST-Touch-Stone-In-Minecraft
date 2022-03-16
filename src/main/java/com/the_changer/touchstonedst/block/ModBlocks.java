@@ -15,10 +15,10 @@ public class ModBlocks {
     //create the blocks
     public static final Block PIG_HEAD = registerBlock("pig_head",
             new RotateBlock(FabricBlockSettings.of(Material.DECORATION)
-                    .strength(9999999999999999f, 9999999999999999f).requiresTool()), ItemGroup.MISC);
+                    .strength(1f, 1f).requiresTool()), ItemGroup.MISC);
 
     public static final Block TOUCH_STONE = registerBlock("touch_stone",
-            new Block(FabricBlockSettings.of(Material.DECORATION)
+            new TouchStoneBlock(FabricBlockSettings.of(Material.DECORATION)
                     .strength(9999999999999999f, 9999999999999999f).requiresTool()), ItemGroup.MISC);
 
     //register a new block item

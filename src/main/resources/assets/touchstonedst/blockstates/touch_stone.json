@@ -1,8 +1,11 @@
 {
   "variants":
   {
-    "": {
+    "deactivated=true": {
       "model": "touchstonedst:block/touch_stone"
+    },
+    "deactivated=false": {
+      "model": "touchstonedst:block/touch_stone_activated"
     }
   }
 }

@@ -3,10 +3,15 @@ package com.the_changer.touchstonedst;
 import com.the_changer.touchstonedst.block.ModBlocks;
 import com.the_changer.touchstonedst.item.ModItems;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
+import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class TouchStoneDST implements ModInitializer {
+	//save the mod id for easy access
 	public static final String MOD_ID = "touchstonedst";
 
 	// This logger is used to write text to the console and the log file.
