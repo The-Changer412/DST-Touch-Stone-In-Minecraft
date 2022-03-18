@@ -4,9 +4,10 @@
   "package": "com.the_changer.touchstonedst.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+  "SpectatorLookAtBlock"
   ],
   "client": [
-    "ExampleMixin"
+    "Mixin"
   ],
   "injectors": {
     "defaultRequire": 1

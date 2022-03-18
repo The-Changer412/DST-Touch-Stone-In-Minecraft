@@ -3,5 +3,7 @@
   "item.touchstonedst.mythril_nugget": "Mythril Nugget",
 
   "block.touchstonedst.pig_head": "Pig Head",
-  "block.touchstonedst.touch_stone": "Touch Stone"
+  "block.touchstonedst.touch_stone": "Touch Stone",
+  "category.touchstonedst.KeyBinds" : "Touch Stone DST Keybinds",
+  "key.touchstonedst.TouchStoneActivateRespawnFromSpectator": "Activate Respawn From Touch Stone"
 }

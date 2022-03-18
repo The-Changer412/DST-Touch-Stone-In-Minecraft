@@ -1,5 +1,6 @@
 package com.the_changer.touchstonedst.block;
 
+import com.the_changer.touchstonedst.TouchStoneDST;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,7 +29,7 @@ public class TouchStoneBlock extends Block {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         //make it only run when in the server, with the main hand event, and if the stone is deactivated
-        if (!world.isClient() && hand == Hand.MAIN_HAND && state.get(DEACTIVATED) == true)
+        if (!world.isClient() && hand == Hand.MAIN_HAND && state.get(DEACTIVATED))
         {
             //set the property to false
             world.setBlockState(pos, state.with(DEACTIVATED, false), NOTIFY_ALL);
@@ -45,7 +46,7 @@ public class TouchStoneBlock extends Block {
     //play the explosion particle effect when the touch stone is activated
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         //check to see if the stone is activated, and the particle hasn't been played before
-        if (state.get(DEACTIVATED) == false && state.get(NOT_PLAYED_PARTICLE) == true){
+        if (!state.get(DEACTIVATED) && state.get(NOT_PLAYED_PARTICLE)){
             //get the coords
             double X = (double)pos.getX() + 0.5D;
             double Y = (double)pos.getY() + 0.7D;
