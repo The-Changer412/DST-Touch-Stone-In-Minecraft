@@ -3,8 +3,17 @@ package com.the_changer.touchstonedst.block;
 import com.the_changer.touchstonedst.TouchStoneDST;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LightningEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.SpawnEggItem;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.text.Text;
@@ -12,8 +21,15 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class TouchStoneBlock extends Block {
@@ -39,6 +55,23 @@ public class TouchStoneBlock extends Block {
                 "This Touch Stone is now activated at " + Integer.toString(pos.getX()) + "/" + Integer.toString(pos.getY()) + "/" + Integer.toString(pos.getZ()) + ".")
                 , false);
 
+        }
+
+        //only trigger in spectator mode with the block activated
+        if (world.isClient() && player.isSpectator() && !world.getBlockState(pos).get(DEACTIVATED))
+        {
+            //get the list of players in the server
+            List<ServerPlayerEntity> listOfPlayers =  MinecraftClient.getInstance().getServer().getPlayerManager().getPlayerList();
+            for (int i=0; i<listOfPlayers.size(); i++)
+            {
+                //check to see if any of the players on the server is the user
+                if (listOfPlayers.get(i).getDisplayName().equals(player.getDisplayName()))
+                {
+                    //set the client gamemode to survival
+                    listOfPlayers.get(i).changeGameMode(GameMode.SURVIVAL);
+                    player.sendMessage(Text.of("You have been brought back from the dead. Now, don't go dying again."), false);
+                }
+            }
         }
         return ActionResult.SUCCESS;
     }
