@@ -1,13 +1,9 @@
 package com.the_changer.touchstonedst.mixin;
 
-import com.the_changer.touchstonedst.TouchStoneDST;
 import com.the_changer.touchstonedst.TouchStoneDSTClientInit;
 import com.the_changer.touchstonedst.block.ModBlocks;
-import com.the_changer.touchstonedst.block.TouchStoneBlock;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -17,10 +13,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import net.minecraft.client.MinecraftClient;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.security.Key;
 import java.util.Locale;
 
 @Mixin(InGameHud.class)

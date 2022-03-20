@@ -1,12 +1,7 @@
 package com.the_changer.touchstonedst;
 
 import com.the_changer.touchstonedst.block.ModBlocks;
-import com.the_changer.touchstonedst.item.ModItems;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +22,6 @@ public class TouchStoneDST implements ModInitializer {
 		LOGGER.info("Hello Fabric world!");
 
 		//register the items and blocks
-		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 	}
 }
