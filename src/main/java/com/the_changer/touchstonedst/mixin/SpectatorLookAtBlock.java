@@ -2,6 +2,7 @@ package com.the_changer.touchstonedst.mixin;
 
 import com.the_changer.touchstonedst.TouchStoneDSTClientInit;
 import com.the_changer.touchstonedst.block.ModBlocks;
+import com.the_changer.touchstonedst.block.TouchStoneBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.text.Text;
@@ -40,10 +41,13 @@ public abstract class SpectatorLookAtBlock{
                     lookingBlock.onUse(lookingBlock.getDefaultState(), MinecraftClient.getInstance().world, blockPos, MinecraftClient.getInstance().player, Hand.MAIN_HAND, ((BlockHitResult)hitResult));
                 }
 
-                //tell the user what key to press to respawn
-                String[] Keybinds = TouchStoneDSTClientInit.TouchStoneActivateRespawnFromSpectator.getBoundKeyTranslationKey().split("key.keyboard.");
-                String Keybind = Keybinds[1].toUpperCase(Locale.ROOT);
-                MinecraftClient.getInstance().player.sendMessage(Text.of("Press the " + Keybind +  " key to respawn."), true);
+                //tell the user what key to press to respawn if the touchstone is activated
+                if (!MinecraftClient.getInstance().getServer().getOverworld().getBlockState(blockPos).get(TouchStoneBlock.DEACTIVATED))
+                {
+                    String[] Keybinds = TouchStoneDSTClientInit.TouchStoneActivateRespawnFromSpectator.getBoundKeyTranslationKey().split("key.keyboard.");
+                    String Keybind = Keybinds[1].toUpperCase(Locale.ROOT);
+                    MinecraftClient.getInstance().player.sendMessage(Text.of("Press the " + Keybind +  " key to respawn."), true);
+                }
 
                 //show the crosshair
                 cir.setReturnValue(true);
