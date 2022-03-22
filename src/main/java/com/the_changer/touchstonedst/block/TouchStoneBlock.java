@@ -2,7 +2,10 @@ package com.the_changer.touchstonedst.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -13,8 +16,11 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 
 import java.util.List;
 import java.util.Random;
@@ -54,8 +60,21 @@ public class TouchStoneBlock extends Block {
                 //check to see if any of the players on the server is the user
                 if (listOfPlayers.get(i).getDisplayName().equals(player.getDisplayName()))
                 {
+                    //spawn a lighting on the block
+                    LightningEntity lightningEntity = (LightningEntity) EntityType.LIGHTNING_BOLT.create(world);
+                    lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
+                    MinecraftClient.getInstance().getServer().getOverworld().spawnEntity(lightningEntity);
+
                     //set the client gamemode to survival
                     listOfPlayers.get(i).changeGameMode(GameMode.SURVIVAL);
+
+                    //spawn the player on top of the touch stone
+                    listOfPlayers.get(i).teleport(pos.getX(), pos.getY()+1, pos.getZ());
+
+                    //destroy the block
+                    MinecraftClient.getInstance().getServer().getOverworld().breakBlock(pos, false);
+
+                    //send a message to the player
                     player.sendMessage(Text.of("You have been brought back from the dead. Now, don't go dying again."), false);
                 }
             }
@@ -67,12 +86,8 @@ public class TouchStoneBlock extends Block {
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         //check to see if the stone is activated, and the particle hasn't been played before
         if (!state.get(DEACTIVATED) && state.get(NOT_PLAYED_PARTICLE)){
-            //get the coords
-            double X = (double)pos.getX() + 0.5D;
-            double Y = (double)pos.getY() + 0.7D;
-            double Z = (double)pos.getZ() + 0.5D;
             //play the explosion particle at the coords with zero velocity
-            world.addParticle(ParticleTypes.EXPLOSION, X, Y, Z, 0.0D, 0.0D, 0.0D);
+            world.addParticle(ParticleTypes.EXPLOSION, pos.getX(), pos.getY(), pos.getZ(), 0.0D, 0.0D, 0.0D);
             //set the not played particle to false
             world.setBlockState(pos, state.with(NOT_PLAYED_PARTICLE, false), Block.NOTIFY_ALL);
         }
