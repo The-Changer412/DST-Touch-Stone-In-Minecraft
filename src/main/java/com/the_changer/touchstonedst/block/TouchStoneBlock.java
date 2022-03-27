@@ -6,6 +6,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -37,8 +39,8 @@ public class TouchStoneBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        //make it only run when in the server, with the main hand event, and if the stone is deactivated
-        if (!world.isClient() && hand == Hand.MAIN_HAND && state.get(DEACTIVATED))
+        //make it only run when the block is deactivated and is not in spectator
+        if (!world.isClient() && hand == Hand.MAIN_HAND && state.get(DEACTIVATED) && !player.isSpectator())
         {
             //set the property to false
             world.setBlockState(pos, state.with(DEACTIVATED, false), NOTIFY_ALL);
@@ -51,7 +53,7 @@ public class TouchStoneBlock extends Block {
         }
 
         //only trigger in spectator mode with the block activated
-        if (world.isClient() && player.isSpectator() && !world.getBlockState(pos).get(DEACTIVATED))
+        if (!world.isClient() && player.isSpectator() && !world.getBlockState(pos).get(DEACTIVATED))
         {
             //get the list of players in the server
             List<ServerPlayerEntity> listOfPlayers =  MinecraftClient.getInstance().getServer().getPlayerManager().getPlayerList();
@@ -60,19 +62,23 @@ public class TouchStoneBlock extends Block {
                 //check to see if any of the players on the server is the user
                 if (listOfPlayers.get(i).getDisplayName().equals(player.getDisplayName()))
                 {
+                    //give the player a buff
+                    listOfPlayers.get(i).addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100));
+                    listOfPlayers.get(i).addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 3));
+
                     //spawn a lighting on the block
                     LightningEntity lightningEntity = (LightningEntity) EntityType.LIGHTNING_BOLT.create(world);
                     lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
-                    MinecraftClient.getInstance().getServer().getOverworld().spawnEntity(lightningEntity);
+                    world.spawnEntity(lightningEntity);
 
                     //set the client gamemode to survival
                     listOfPlayers.get(i).changeGameMode(GameMode.SURVIVAL);
 
                     //spawn the player on top of the touch stone
-                    listOfPlayers.get(i).teleport(pos.getX(), pos.getY()+1, pos.getZ());
+                    listOfPlayers.get(i).teleport(pos.getX() + 0.5D, pos.getY()+1D, pos.getZ() + 0.5D);
 
-                    //destroy the block
-                    MinecraftClient.getInstance().getServer().getOverworld().breakBlock(pos, false);
+                    //replace the touchstone with air
+                    world.setBlockState(new BlockPos(pos.getX(), pos.getY()-1, pos.getZ()), Blocks.AIR.getDefaultState());
 
                     //send a message to the player
                     player.sendMessage(Text.of("You have been brought back from the dead. Now, don't go dying again."), false);

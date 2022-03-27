@@ -38,7 +38,7 @@ public abstract class SpectatorLookAtBlock{
                 if (TouchStoneDSTClientInit.TouchStoneActivateRespawnFromSpectator.wasPressed())
                 {
                     //onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
-                    lookingBlock.onUse(lookingBlock.getDefaultState(), MinecraftClient.getInstance().world, blockPos, MinecraftClient.getInstance().player, Hand.MAIN_HAND, ((BlockHitResult)hitResult));
+                    lookingBlock.onUse(lookingBlock.getDefaultState(), MinecraftClient.getInstance().getServer().getOverworld(), blockPos, MinecraftClient.getInstance().player, Hand.MAIN_HAND, ((BlockHitResult)hitResult));
                 }
 
                 //tell the user what key to press to respawn if the touchstone is activated
