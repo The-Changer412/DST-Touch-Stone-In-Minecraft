@@ -1,0 +1,22 @@
+{
+    // What structures to pick to try and spawn if a spot passes the placement check.
+  "structures": [
+    {
+      "structure": "touchstonedst:touch_stone_structure",
+      "weight": 1
+    }
+  ],
+  "placement": {
+      // Make sure this is unique and does not match any other structure set's salt
+    "salt": 1928375929,
+
+      // The average distance apart in chunks for spawn attempts
+    "spacing": 20,
+
+      // Minimum distance apart in chunks for spawn attempts
+    "separation": 12,
+
+      // The kind of placement to use. The other kind is ring based like strongholds use.
+    "type": "minecraft:random_spread"
+  }
+}
