@@ -1,5 +1,6 @@
 package com.the_changer.touchstonedst.block;
 
+import com.the_changer.touchstonedst.TouchStoneDST;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -19,11 +20,10 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
 
+import java.io.*;
 import java.util.List;
 import java.util.Random;
 
@@ -44,6 +44,26 @@ public class TouchStoneBlock extends Block {
         {
             //set the property to false
             world.setBlockState(pos, state.with(DEACTIVATED, false), NOTIFY_ALL);
+
+            //save the coords of the touchstone to a list
+            TouchStoneDST.ACTIVATED_TOUCH_STONES.add(pos);
+
+            //create a new file in the data folder in the world's folder
+            String WorldName = world.getServer().getServerMotd().split(" - ")[1];
+            TouchStoneDST.SavePath = System.getProperty("user.dir") + File.separator + "saves" + File.separator + WorldName + File.separator + "data" + File.separator + TouchStoneDST.File;
+
+            try
+            {
+                //write the data to the file
+                FileWriter writer = new FileWriter(TouchStoneDST.SavePath, false);
+                BufferedWriter bw = new BufferedWriter(writer);
+                bw.write(TouchStoneDST.ACTIVATED_TOUCH_STONES.toString());
+                bw.close();
+            }
+            catch (Exception e)
+            {
+                TouchStoneDST.LOGGER.warn(e.getMessage());
+            }
 
             //tell the player that it's activated and where it is
             player.sendMessage(Text.of(
