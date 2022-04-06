@@ -50,12 +50,12 @@ public class TouchStoneBlock extends Block {
 
             //create a new file in the data folder in the world's folder
             String WorldName = world.getServer().getServerMotd().split(" - ")[1];
-            TouchStoneDST.SavePath = System.getProperty("user.dir") + File.separator + "saves" + File.separator + WorldName + File.separator + "data" + File.separator + TouchStoneDST.File;
+            String SavePath = System.getProperty("user.dir") + File.separator + "saves" + File.separator + WorldName + File.separator + "data" + File.separator + TouchStoneDST.File;
 
             try
             {
                 //write the data to the file
-                FileWriter writer = new FileWriter(TouchStoneDST.SavePath, false);
+                FileWriter writer = new FileWriter(SavePath, false);
                 BufferedWriter bw = new BufferedWriter(writer);
                 bw.write(TouchStoneDST.ACTIVATED_TOUCH_STONES.toString());
                 bw.close();
