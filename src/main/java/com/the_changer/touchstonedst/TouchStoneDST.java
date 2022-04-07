@@ -25,8 +25,6 @@ public class TouchStoneDST implements ModInitializer {
 	public static String SavePath = null;
 	public static String File = "ActivatedTouchStone.txt";
 
-//	ClientLifecycleEvents temp = new ClientLifecycleEvents();
-
 	@Override
 	public void onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.

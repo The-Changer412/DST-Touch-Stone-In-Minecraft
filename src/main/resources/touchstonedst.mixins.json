@@ -6,7 +6,8 @@
   "mixins": [
   "SpectatorLookAtBlock",
   "StructureFeatureAccessor",
-  "LoadCustomDataWhenWorldIsLoading"
+  "LoadCustomDataWhenWorldIsLoading",
+  "ShowActivatedTouchStonesOnRespawn"
   ],
   "client": [
     "Mixin"
