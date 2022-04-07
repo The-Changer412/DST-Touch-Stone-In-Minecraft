@@ -3,17 +3,17 @@
   "id": "touchstonedst",
   "version": "${version}",
 
-  "name": "TouchStone DST",
-  "description": "This is a mod that adds in Touch Stones from Don't Starve Together at the cost of no more Totem of Undying",
+  "name": "DST TouchStone In Minecraft",
+  "description": "This Mod will add in the DST touch stone into Minecraft at the cost of the Totem of Undying being removed from the game.",
   "authors": [
     "The Changer"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/The-Changer412/DST-Touch-Stone-In-Minecraft",
+    "sources": "https://github.com/The-Changer412/DST-Touch-Stone-In-Minecraft"
   },
 
-  "license": "CC0-1.0",
+  "license": "GPL-3.0 License",
   "icon": "assets/touchstonedst/icon.png",
 
   "environment": "*",
