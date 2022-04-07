@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "DST TouchStone In Minecraft",
-  "description": "This Mod will add in the DST touch stone into Minecraft at the cost of the Totem of Undying being removed from the game.",
+  "description": "This Mod will add in the DST touch stone into Minecraft at the cost of the Totem of Undying being removed from the game. Note that the mod was designed for hardcore mode.",
   "authors": [
     "The Changer"
   ],
